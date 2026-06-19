@@ -1,7 +1,8 @@
-cleanup(){
+#!/bin/bash
+cleanup() {
 echo "..."
-for file in pitaya-*.MP3;do
-if [-f "$file"];then
+for file in pitaya-*.MP3; do
+if [ -f "$file"  ]; then
 rm -f "$file"
 echo "delete:$file"
 fi
@@ -10,26 +11,30 @@ echo "wancheng"
 exit 0
 }
 trap cleanup SIGINT SIGTERM EXIT
-if [ $# -ne 1];then
+if [ $# -ne 1 ]; then
 echo "error"
-read -n 1
+read -r -n 1
 exit 1
 fi
-if ![[ $1 =~ ^[1-9][0-9]*$ ]];then
+if ! [[ $1 =~ ^[1-9][0-9]*$ ]]; then
 echo "error"
-read -n 1
+read -r -n 1
 exit 1
 fi
 n=$1
 echo "chengxinhua will create $n files"
-if [! -d "cxhgit"];then
+
+
+if [ ! -d "cxhgit"  ]; then
 mkdir -p cxhgit
 fi
 cd cxhgit || exit 1
 max_files=3
-for i in $(seq 1 $max_files);do
+for i in $(seq 1 $max_files); do
 filename="pitaya-$i.MP3"
-if [ ! -f "$filaname"];then
+
+
+if [ -f "$filename"  ]; then
 touch "$filename"
 else
 echo "cunzai:$filename"
@@ -38,6 +43,6 @@ done
 echo "chengxinhua fin"
 echo "new_listd:"
 ls -la pitaya-*.MP3 2>/dev/null || echo "no_files"
-echo "$(date '+%Y-%m-%d %H:%M:%S')"
-read -n 1
+date '+%Y-%m-%d %H:%M:%S'
+read -r -n 1
 cleanuo
