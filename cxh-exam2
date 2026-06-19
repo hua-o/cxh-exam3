@@ -1,0 +1,61 @@
+#!/bin/bash
+#cxh-exam2
+claer
+check_student_id() {
+local id="$1"
+
+
+
+
+if [[ "$id" =~ ^[0-9]+$ ]]; then
+return 1
+
+
+fi
+[[ "$id" == "process" ]] && return 1
+[[ ! "$id" =~ ^[A-Za-z0-9]+$ ]] && return 1
+[[ "$id" =~ ^[A-Za-z][0-9]+$ ]] && return 0
+return 1
+}
+check_major() {
+[[ "$1" =~ ^[A-Za-z]+$ ]]
+}
+while true; do
+read -r -p "xuehao: " student_id
+if check_student_id "$student_id"; then
+
+
+break
+else
+
+
+echo "geshi,error,(liruZ23310144)"
+
+
+
+
+fi
+
+done
+while true; do
+read -r -p "name(English) : " major
+if check_major "$major"; then
+break
+else
+
+
+echo "geshi,error"
+   fi
+
+done
+if id "$student_id" &>/dev/null; then
+echo "yicunzai"
+else
+echo "$student_id no exist,new: "
+echo "sudo useradd -m -g $major -s /bin/bash $student_id"
+fi
+T3=$(date '+%Y-%m-%d %H:%M:%S')
+echo "nowtimeT3: $T3"
+read -r -p "exit..." -n 1 -s
+echo
+exit 0
